@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+    <item
+        android:id="@+id/chats_page"
+        android:icon="@drawable/ic_outline_message_24"
+        android:title="@string/chats"
+        app:showAsAction="always"/>
+
+    <item
+        android:id="@+id/group_chats_page"
+        android:icon="@drawable/ic_outline_people_alt_24"
+        android:title="@string/groups"
+        app:showAsAction="always" />
+
+</menu>
