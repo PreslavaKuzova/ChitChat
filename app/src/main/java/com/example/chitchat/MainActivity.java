@@ -26,16 +26,23 @@ public class MainActivity extends AppCompatActivity {
         initLocalVariables();
         setUpToolbar();
 
-        setUpBottomNavigationProperties();
-
+        setUpBottomNavigation();
     }
 
-    private void setUpBottomNavigationProperties() {
+    private void initLocalVariables() {
+        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
+        this.chatsFragment = new ChatsFragment();
+        this.groupChatsFragment = new GroupChatsFragment();
+    }
+
+    private void setUpBottomNavigation() {
         final FragmentManager manager = getSupportFragmentManager();
 
         binding.bottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
+                binding.txtDescription.setText(item.getTitle().toString());
                 FragmentTransaction transaction = manager.beginTransaction();
 
                 if (item.getItemId() == R.id.chats_page) {
@@ -48,14 +55,7 @@ public class MainActivity extends AppCompatActivity {
                 return true;
             }
         });
-
         binding.bottomNavBar.setSelectedItemId(R.id.chats_page);
-    }
-
-    private void initLocalVariables() {
-        this.binding = DataBindingUtil.setContentView(this, R.layout.activity_main);
-        this.chatsFragment = new ChatsFragment();
-        this.groupChatsFragment = new GroupChatsFragment();
     }
 
     private void setUpToolbar() {
