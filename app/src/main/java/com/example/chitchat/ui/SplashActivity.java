@@ -1,10 +1,13 @@
-package com.example.chitchat;
+package com.example.chitchat.ui;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
+
+import com.example.chitchat.R;
+import com.example.chitchat.ui.authenticate.AuthenticationActivity;
 
 public class SplashActivity extends AppCompatActivity {
 
@@ -33,7 +36,7 @@ public class SplashActivity extends AppCompatActivity {
 
     private void launch() {
         if (!isFinishing()) {
-            startActivity(new Intent(this, MainActivity.class));
+            startActivity(new Intent(this, AuthenticationActivity.class));
             overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
             finish();
         }

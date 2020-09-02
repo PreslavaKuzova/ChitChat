@@ -1,4 +1,4 @@
-package com.example.chitchat;
+package com.example.chitchat.ui.authenticate;
 
 import android.os.Bundle;
 
@@ -8,7 +8,12 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
-public class GroupChatsFragment extends Fragment {
+import com.example.chitchat.R;
+import com.example.chitchat.data.AuthenticationService;
+
+public class LoginFragment extends Fragment implements AuthenticationService.AuthenticationListener  {
+
+    private AuthenticationService service;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -19,6 +24,16 @@ public class GroupChatsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_group_chats, container, false);
+        return inflater.inflate(R.layout.fragment_login, container, false);
+    }
+
+    @Override
+    public void onSuccess() {
+
+    }
+
+    @Override
+    public void onFailed() {
+
     }
 }

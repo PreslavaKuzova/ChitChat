@@ -3,7 +3,13 @@
     <string name="friends">Friends</string>
     <string name="groups">Groups</string>
     <string name="chats">Chats</string>
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="made_by_preslava">made by Preslava</string>
+    <string name="register">Register</string>
+    <string name="you_have_an_account_click_here">You have an account? <u><b>Click here</b></u></string>
+    <string name="email">Email</string>
+    <string name="password">Password</string>
+    <string name="repeat_password">Repeat password</string>
+    <string name="you_don_t_have_an_account_yet_click_here">You don\'t have an account yet? <u><b>Click here</b></u></string>
+    <string name="login">Login</string>
 </resources>

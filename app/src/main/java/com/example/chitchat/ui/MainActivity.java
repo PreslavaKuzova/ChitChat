@@ -1,4 +1,4 @@
-package com.example.chitchat;
+package com.example.chitchat.ui;
 
 import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
@@ -9,7 +9,10 @@ import androidx.fragment.app.FragmentTransaction;
 import android.os.Bundle;
 import android.view.MenuItem;
 
+import com.example.chitchat.R;
 import com.example.chitchat.databinding.ActivityMainBinding;
+import com.example.chitchat.ui.chats.ChatsFragment;
+import com.example.chitchat.ui.group_chats.GroupChatsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity {
