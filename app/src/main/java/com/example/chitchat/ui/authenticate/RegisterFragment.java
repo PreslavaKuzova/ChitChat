@@ -41,25 +41,16 @@ public class RegisterFragment extends Fragment {
     public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
         super.onViewCreated(view, savedInstanceState);
 
-//        binding.edtUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
-//            @Override
-//            public void onFocusChange(View view, boolean hasFocus) {
-//                if(!hasFocus) {
+        binding.edtUsername.setOnFocusChangeListener(new View.OnFocusChangeListener() {
+            @Override
+            public void onFocusChange(View view, boolean hasFocus) {
+                if(!hasFocus) {
+                    binding.layoutUsername.setError("Invalid");
 //                    String username = binding.edtUsername.getText().toString();
-//
-//                    if(username.trim().length() == 0) {
-//                        binding.edtUsername.setError("This field cannot be empty");
-//                        binding.edtUsername.setText("");
-//                    } else {
-//                        if(registerPresenter.checkIfUsernameAlreadyExists(username)) {
-//                            binding.edtUsername.setError("Username already exists");
-//                        } else {
-//
-//                        }
-//                    }
-//                }
-//            }
-//        });
+//                    Toast.makeText(getActivity(), username, Toast.LENGTH_LONG);
+                }
+            }
+        });
 
 
 

@@ -1,5 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,20 +14,36 @@
         android:gravity="center"
         android:orientation="vertical">
 
-        <EditText
-            android:id="@+id/edt_email"
-            style="@style/SimpleEditText"
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_email"
+            style="@style/SimpleTextInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:hint="@string/email" />
+            android:layout_height="match_parent"
+            android:hint="@string/email">
 
-        <EditText
-            android:id="@+id/edt_pass"
-            style="@style/SimpleEditText"
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_email"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textEmailAddress" />
+
+        </com.google.android.material.textfield.TextInputLayout>
+
+        <com.google.android.material.textfield.TextInputLayout
+            android:id="@+id/layout_pass"
+            style="@style/SimpleTextInput"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             android:hint="@string/password"
-            android:inputType="textPassword" />
+            app:endIconMode="password_toggle">
+
+            <com.google.android.material.textfield.TextInputEditText
+                android:id="@+id/edt_pass"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:inputType="textPassword" />
+
+        </com.google.android.material.textfield.TextInputLayout>
 
         <Button
             android:id="@+id/btn_register"
@@ -48,7 +65,7 @@
         android:gravity="center"
         android:paddingTop="8dp"
         android:paddingBottom="8dp"
-        android:textColor="@color/colorPrimaryDark"
-        android:text="@string/you_don_t_have_an_account_yet_click_here" />
+        android:text="@string/you_don_t_have_an_account_yet_click_here"
+        android:textColor="@color/text_view_accent" />
 
 </RelativeLayout>

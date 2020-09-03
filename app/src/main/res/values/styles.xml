@@ -27,6 +27,7 @@
         <item name="android:layout_marginStart">@dimen/default_margin</item>
         <item name="android:layout_marginEnd">@dimen/default_margin</item>
         <item name="android:layout_marginBottom">@dimen/default_margin</item>
+        <item name="boxStrokeErrorColor">@color/colorAccent</item>
     </style>
 
 
