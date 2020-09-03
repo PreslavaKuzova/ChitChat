@@ -12,4 +12,7 @@
     <string name="repeat_password">Repeat password</string>
     <string name="you_don_t_have_an_account_yet_click_here">You don\'t have an account yet? <u><b>Click here</b></u></string>
     <string name="login">Login</string>
+    <string name="name">Name</string>
+    <string name="username">Username</string>
+    <string name="i_agree_with_the_terms_and_conditions">I agree with the terms and conditions</string>
 </resources>
