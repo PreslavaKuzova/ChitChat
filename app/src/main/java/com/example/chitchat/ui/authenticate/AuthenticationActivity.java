@@ -5,12 +5,14 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.example.chitchat.R;
 import com.example.chitchat.data.AuthenticationService;
 import com.example.chitchat.databinding.ActivityAuthenticateBinding;
+import com.example.chitchat.ui.MainActivity;
 
 public class AuthenticationActivity extends AppCompatActivity {
 
@@ -35,5 +37,16 @@ public class AuthenticationActivity extends AppCompatActivity {
         transaction.commit();
 
 
+    }
+
+    public void navigateToLogin() {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.grp_container, loginFragment);
+        transaction.commit();
+    }
+
+    public void navigateToMain() {
+        startActivity(new Intent(this, MainActivity.class));
+        finish();
     }
 }

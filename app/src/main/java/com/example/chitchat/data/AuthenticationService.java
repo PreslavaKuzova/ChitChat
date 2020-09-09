@@ -15,7 +15,9 @@ public class AuthenticationService {
     private static final String TAG = "AuthenticationService";
     private FirebaseAuth firebaseAuth;
 
-    private AuthenticationService() { }
+    private AuthenticationService() {
+        firebaseAuth = FirebaseAuth.getInstance();
+    }
 
     public static AuthenticationService getInstance() {
         if (service == null) {
@@ -25,34 +27,32 @@ public class AuthenticationService {
     }
 
     public void login(String email, String password, final AuthenticationListener auth) {
-        firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.signInWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "signInWithEmail:success");
-                            auth.onSuccess();
+                            auth.onSuccess(getCurrentUserId());
                         } else {
                             Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            auth.onFailed();
+                            auth.onFailure();
                         }
                     }
                 });
     }
 
     public void register(String email, String password, final AuthenticationListener auth) {
-        firebaseAuth = FirebaseAuth.getInstance();
         firebaseAuth.createUserWithEmailAndPassword(email, password)
                 .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
                     @Override
                     public void onComplete(@NonNull Task<AuthResult> task) {
                         if (task.isSuccessful()) {
                             Log.d(TAG, "createUserWithEmail:success");
-                            auth.onSuccess();
+                            auth.onSuccess(getCurrentUserId());
                         } else {
                             Log.w(TAG, "createUserWithEmail:failure", task.getException());
-                            auth.onFailed();
+                            auth.onFailure();
                         }
                     }
                 });
@@ -67,8 +67,8 @@ public class AuthenticationService {
     }
 
     public interface AuthenticationListener {
-        void onSuccess();
+        void onSuccess(String uid);
 
-        void onFailed();
+        void onFailure();
     }
 }
