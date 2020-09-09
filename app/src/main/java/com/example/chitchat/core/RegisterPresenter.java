@@ -20,7 +20,7 @@ public class RegisterPresenter {
 
         @Override
         public void onUserRegistrationFailure() {
-            registerFragment.showRegistrationError();
+            registerFragment.showRegistrationError("Something went wrong. Please try again.");
         }
     };
 
@@ -156,7 +156,7 @@ public class RegisterPresenter {
 
             @Override
             public void onFailure() {
-                registerFragment.showRegistrationError();
+                registerFragment.showRegistrationError("Something went wrong. Please try again.");
             }
         });
     }

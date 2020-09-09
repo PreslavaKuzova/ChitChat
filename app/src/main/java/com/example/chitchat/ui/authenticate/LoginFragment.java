@@ -70,8 +70,8 @@ public class LoginFragment extends Fragment {
         request.onRedirectionToMainScreenRequested();
     }
 
-    public void showLoginError() {
-        ErrorDialogManager.showError(getContext(), "Invalid credentials. Please try again.");
+    public void showLoginError(String error) {
+        ErrorDialogManager.showError(getContext(), error);
     }
 
     public interface OnRedirectionToAnotherScreenRequestListener {

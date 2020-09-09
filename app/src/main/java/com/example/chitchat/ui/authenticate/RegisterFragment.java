@@ -129,8 +129,8 @@ public class RegisterFragment extends Fragment {
         };
     }
 
-    public void showRegistrationError() {
-        ErrorDialogManager.showError(getContext(), "Something went wrong. Please try again.");
+    public void showRegistrationError(String error) {
+        ErrorDialogManager.showError(getContext(), error);
     }
 
     public void redirectToLoginFragment() {

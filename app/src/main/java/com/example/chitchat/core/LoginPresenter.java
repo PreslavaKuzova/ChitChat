@@ -19,17 +19,21 @@ public class LoginPresenter {
     }
 
     public void onLoginButtonPressed(String email, String password) {
-        authenticationService.login(email, password, new AuthenticationService.AuthenticationListener() {
-            @Override
-            public void onSuccess(String uid) {
-                loginFragment.redirectToMainScreen();
-            }
+        if(!email.isEmpty() && !password.isEmpty()) {
+            authenticationService.login(email, password, new AuthenticationService.AuthenticationListener() {
+                @Override
+                public void onSuccess(String uid) {
+                    loginFragment.redirectToMainScreen();
+                }
 
-            @Override
-            public void onFailure() {
-                loginFragment.showLoginError();
-            }
-        });
+                @Override
+                public void onFailure() {
+                    loginFragment.showLoginError("Invalid credentials. Please try again.");
+                }
+            });
+        } else {
+            loginFragment.showLoginError("Fields cannot be empty. Please try again.");
+        }
     }
 
     public void onRedirectRegisterFragmentPressed() {

@@ -6,11 +6,15 @@ import androidx.databinding.DataBindingUtil;
 import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.MenuItem;
+import android.view.View;
 
 import com.example.chitchat.R;
+import com.example.chitchat.data.AuthenticationService;
 import com.example.chitchat.databinding.ActivityMainBinding;
+import com.example.chitchat.ui.authenticate.AuthenticationActivity;
 import com.example.chitchat.ui.chats.ChatsFragment;
 import com.example.chitchat.ui.group_chats.GroupChatsFragment;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
@@ -41,24 +45,28 @@ public class MainActivity extends AppCompatActivity {
     private void setUpBottomNavigation() {
         final FragmentManager manager = getSupportFragmentManager();
 
-        binding.bottomNavBar.setOnNavigationItemSelectedListener(new BottomNavigationView.OnNavigationItemSelectedListener() {
-            @Override
-            public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+        binding.bottomNavBar.setOnNavigationItemSelectedListener(item -> {
 
-                binding.txtDescription.setText(item.getTitle().toString());
-                FragmentTransaction transaction = manager.beginTransaction();
+            binding.txtDescription.setText(item.getTitle().toString());
+            FragmentTransaction transaction = manager.beginTransaction();
 
-                if (item.getItemId() == R.id.chats_page) {
-                    transaction.replace(R.id.grp_container, chatsFragment);
-                    transaction.commit();
-                } else if (item.getItemId() == R.id.group_chats_page) {
-                    transaction.replace(R.id.grp_container, groupChatsFragment);
-                    transaction.commit();
-                }
-                return true;
+            if (item.getItemId() == R.id.chats_page) {
+                transaction.replace(R.id.grp_container, chatsFragment);
+                transaction.commit();
+            } else if (item.getItemId() == R.id.group_chats_page) {
+                transaction.replace(R.id.grp_container, groupChatsFragment);
+                transaction.commit();
             }
+            return true;
         });
         binding.bottomNavBar.setSelectedItemId(R.id.chats_page);
+
+        binding.imgProfilePic.setOnClickListener(view -> {
+            AuthenticationService.getInstance().logout();
+            startActivity(new Intent(this, AuthenticationActivity.class));
+            finish();
+        });
+
     }
 
     private void setUpToolbar() {
