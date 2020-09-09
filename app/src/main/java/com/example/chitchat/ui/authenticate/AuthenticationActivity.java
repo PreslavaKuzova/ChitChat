@@ -7,14 +7,13 @@ import androidx.fragment.app.FragmentTransaction;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.View;
 
 import com.example.chitchat.R;
-import com.example.chitchat.data.AuthenticationService;
 import com.example.chitchat.databinding.ActivityAuthenticateBinding;
 import com.example.chitchat.ui.MainActivity;
 
-public class AuthenticationActivity extends AppCompatActivity {
+public class AuthenticationActivity extends AppCompatActivity implements RegisterFragment.OnRedirectionToLoginFragmentRequestListener,
+        LoginFragment.OnRedirectionToAnotherScreenRequestListener {
 
     private ActivityAuthenticateBinding binding;
     private final FragmentManager manager = getSupportFragmentManager();
@@ -33,19 +32,26 @@ public class AuthenticationActivity extends AppCompatActivity {
         this.registerFragment = new RegisterFragment();
 
         FragmentTransaction transaction = manager.beginTransaction();
-        transaction.replace(R.id.grp_container, registerFragment);
+        transaction.replace(R.id.grp_container, loginFragment);
         transaction.commit();
-
-
     }
 
-    public void navigateToLogin() {
+    @Override
+    public void onRedirectionToLoginRequested() {
         FragmentTransaction transaction = manager.beginTransaction();
         transaction.replace(R.id.grp_container, loginFragment);
         transaction.commit();
     }
 
-    public void navigateToMain() {
+    @Override
+    public void onRedirectionToRegisterScreenRequested() {
+        FragmentTransaction transaction = manager.beginTransaction();
+        transaction.replace(R.id.grp_container, registerFragment);
+        transaction.commit();
+    }
+
+    @Override
+    public void onRedirectionToMainScreenRequested() {
         startActivity(new Intent(this, MainActivity.class));
         finish();
     }

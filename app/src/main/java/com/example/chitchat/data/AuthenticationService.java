@@ -28,16 +28,13 @@ public class AuthenticationService {
 
     public void login(String email, String password, final AuthenticationListener auth) {
         firebaseAuth.signInWithEmailAndPassword(email, password)
-                .addOnCompleteListener(new OnCompleteListener<AuthResult>() {
-                    @Override
-                    public void onComplete(@NonNull Task<AuthResult> task) {
-                        if (task.isSuccessful()) {
-                            Log.d(TAG, "signInWithEmail:success");
-                            auth.onSuccess(getCurrentUserId());
-                        } else {
-                            Log.w(TAG, "signInWithEmail:failure", task.getException());
-                            auth.onFailure();
-                        }
+                .addOnCompleteListener(task -> {
+                    if (task.isSuccessful()) {
+                        Log.d(TAG, "signInWithEmail:success");
+                        auth.onSuccess(getCurrentUserId());
+                    } else {
+                        Log.w(TAG, "signInWithEmail:failure", task.getException());
+                        auth.onFailure();
                     }
                 });
     }
@@ -64,6 +61,10 @@ public class AuthenticationService {
 
     public String getCurrentUserId() {
         return isUserLogged() ? firebaseAuth.getCurrentUser().getUid() : null;
+    }
+
+    public void logout() {
+        firebaseAuth.signOut();
     }
 
     public interface AuthenticationListener {

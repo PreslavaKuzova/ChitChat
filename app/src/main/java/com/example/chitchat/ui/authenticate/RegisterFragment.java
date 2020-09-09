@@ -1,5 +1,6 @@
 package com.example.chitchat.ui.authenticate;
 
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -23,6 +24,7 @@ public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding binding;
     private RegisterPresenter registerPresenter;
+    private OnRedirectionToLoginFragmentRequestListener request;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -33,7 +35,7 @@ public class RegisterFragment extends Fragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        this.binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false);
+        binding = DataBindingUtil.inflate(inflater, R.layout.fragment_register, container, false);
         return binding.getRoot();
     }
 
@@ -64,13 +66,18 @@ public class RegisterFragment extends Fragment {
                 binding.edtPass.getText().toString(),
                 binding.edtRepeatPass.getText().toString()));
 
-        binding.txtLoginRedirect.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                registerPresenter.onRedirectLoginFragmentPressed();
-            }
-        });
+        binding.txtLoginRedirect.setOnClickListener(view13 -> registerPresenter.onRedirectLoginFragmentPressed());
 
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        try {
+            request = (OnRedirectionToLoginFragmentRequestListener) context;
+        } catch (ClassCastException e) {
+            throw new ClassCastException(context.toString() + " must implement OnRedirectionToLoginFragmentRequestListener");
+        }
     }
 
     public void setUsernameError(String error) {
@@ -121,15 +128,18 @@ public class RegisterFragment extends Fragment {
         };
     }
 
-    public void showRegistrationErrorPopUp() {
+    public void showRegistrationError() {
         //TODO: something relatively smart
 
         Log.e("Preska", "IDIOT IMASH VECHE TAKOVA" );
     }
 
     public void redirectToLoginFragment() {
-        ((AuthenticationActivity) getActivity()).navigateToLogin();
+        request.onRedirectionToLoginRequested();
     }
 
+    public interface OnRedirectionToLoginFragmentRequestListener {
+        void onRedirectionToLoginRequested();
+    }
     
 }
