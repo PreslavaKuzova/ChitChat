@@ -18,6 +18,7 @@ import android.view.ViewGroup;
 import com.example.chitchat.R;
 import com.example.chitchat.core.RegisterPresenter;
 import com.example.chitchat.databinding.FragmentRegisterBinding;
+import com.example.chitchat.ui.ErrorDialogManager;
 
 
 public class RegisterFragment extends Fragment {
@@ -129,9 +130,7 @@ public class RegisterFragment extends Fragment {
     }
 
     public void showRegistrationError() {
-        //TODO: something relatively smart
-
-        Log.e("Preska", "IDIOT IMASH VECHE TAKOVA" );
+        ErrorDialogManager.showError(getContext(), "Something went wrong. Please try again.");
     }
 
     public void redirectToLoginFragment() {

@@ -16,6 +16,7 @@ import android.widget.Toast;
 import com.example.chitchat.R;
 import com.example.chitchat.core.LoginPresenter;
 import com.example.chitchat.databinding.FragmentLoginBinding;
+import com.example.chitchat.ui.ErrorDialogManager;
 
 public class LoginFragment extends Fragment {
 
@@ -70,7 +71,7 @@ public class LoginFragment extends Fragment {
     }
 
     public void showLoginError() {
-        Toast.makeText(getContext(), "ERROR", Toast.LENGTH_LONG).show();
+        ErrorDialogManager.showError(getContext(), "Invalid credentials. Please try again.");
     }
 
     public interface OnRedirectionToAnotherScreenRequestListener {
