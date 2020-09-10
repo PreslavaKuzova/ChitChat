@@ -12,8 +12,8 @@ import com.example.chitchat.R;
 import com.example.chitchat.databinding.ActivityAuthenticateBinding;
 import com.example.chitchat.ui.MainActivity;
 
-public class AuthenticationActivity extends AppCompatActivity implements RegisterFragment.OnRedirectionToLoginFragmentRequestListener,
-        LoginFragment.OnRedirectionToAnotherScreenRequestListener {
+public class AuthenticationActivity extends AppCompatActivity implements RegisterFragment.RegisterFragmentListener,
+        LoginFragment.LoginFragmentListener {
 
     private ActivityAuthenticateBinding binding;
     private final FragmentManager manager = getSupportFragmentManager();

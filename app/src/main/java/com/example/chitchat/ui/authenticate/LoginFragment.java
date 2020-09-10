@@ -11,7 +11,6 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Toast;
 
 import com.example.chitchat.R;
 import com.example.chitchat.core.LoginPresenter;
@@ -22,7 +21,7 @@ public class LoginFragment extends Fragment {
 
     private FragmentLoginBinding binding;
     private LoginPresenter loginPresenter;
-    private OnRedirectionToAnotherScreenRequestListener request;
+    private LoginFragmentListener request;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -56,10 +55,16 @@ public class LoginFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            request = (OnRedirectionToAnotherScreenRequestListener) context;
+            request = (LoginFragmentListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnRedirectionToRegistrationScreenRequestListener");
         }
+    }
+
+    @Override
+    public void onResume() {
+        loginPresenter.onFragmentCreated();
+        super.onResume();
     }
 
     public void redirectToRegisterScreen() {
@@ -74,7 +79,7 @@ public class LoginFragment extends Fragment {
         ErrorDialogManager.showError(getContext(), error);
     }
 
-    public interface OnRedirectionToAnotherScreenRequestListener {
+    public interface LoginFragmentListener {
         void onRedirectionToRegisterScreenRequested();
 
         void onRedirectionToMainScreenRequested();

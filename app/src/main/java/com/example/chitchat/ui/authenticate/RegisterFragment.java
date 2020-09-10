@@ -10,7 +10,6 @@ import androidx.fragment.app.Fragment;
 
 import android.text.Editable;
 import android.text.TextWatcher;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -25,7 +24,7 @@ public class RegisterFragment extends Fragment {
 
     private FragmentRegisterBinding binding;
     private RegisterPresenter registerPresenter;
-    private OnRedirectionToLoginFragmentRequestListener request;
+    private RegisterFragmentListener request;
 
     @Override
     public void onCreate(Bundle savedInstanceState) {
@@ -67,7 +66,7 @@ public class RegisterFragment extends Fragment {
                 binding.edtPass.getText().toString(),
                 binding.edtRepeatPass.getText().toString()));
 
-        binding.txtLoginRedirect.setOnClickListener(view13 -> registerPresenter.onRedirectLoginFragmentPressed());
+        binding.txtLoginRedirect.setOnClickListener(view13 -> registerPresenter.onOpenLoginBtnPressed());
 
     }
 
@@ -75,7 +74,7 @@ public class RegisterFragment extends Fragment {
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         try {
-            request = (OnRedirectionToLoginFragmentRequestListener) context;
+            request = (RegisterFragmentListener) context;
         } catch (ClassCastException e) {
             throw new ClassCastException(context.toString() + " must implement OnRedirectionToLoginFragmentRequestListener");
         }
@@ -137,8 +136,12 @@ public class RegisterFragment extends Fragment {
         request.onRedirectionToLoginRequested();
     }
 
-    public interface OnRedirectionToLoginFragmentRequestListener {
+    public void redirectToMainFragment() { request.onRedirectionToMainScreenRequested(); }
+
+    public interface RegisterFragmentListener {
         void onRedirectionToLoginRequested();
+
+        void onRedirectionToMainScreenRequested();
     }
     
 }

@@ -15,7 +15,7 @@ public class RegisterPresenter {
     private UsersDatabaseService.UsersDatabaseListener databaseListener = new UsersDatabaseService.UsersDatabaseListener() {
         @Override
         public void onUserRegistrationSuccess() {
-            registerFragment.redirectToLoginFragment();
+            registerFragment.redirectToMainFragment();
         }
 
         @Override
@@ -161,7 +161,7 @@ public class RegisterPresenter {
         });
     }
 
-    public void onRedirectLoginFragmentPressed() {
+    public void onOpenLoginBtnPressed() {
         registerFragment.redirectToLoginFragment();
     }
 
